@@ -97,7 +97,7 @@ function game() {
         console.log(`${finalScore}\nYou Lose...`);
     //if by some miracle its a tie
     } else {
-        console.log(`${finalScore}\nHoly Cow! FIVE TIES IN A ROW!`);
+        console.log(`${finalScore}\nHoly Cow! A tie! What are the odds!!`);
     }
 }
 
