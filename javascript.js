@@ -5,13 +5,19 @@ let randomNumber = Math.floor( Math.random() * 3 ) + 1;
 //Create a string variable to store "rock" "paper" or "scissors"
 let computerChoice;
 /*store "ROCK "PAPER" or "SCISSORS" in computerChoice based on result of randomNumber*/
-if( randomNumber === 1 ) {
-    computerChoice = "ROCK";
-} else if (randomNumber === 2 ) {
-    computerChoice = "PAPER";
-} else {
-    computerChoice = "SCISSORS";
+switch ( randomNumber ) {
+    case 1: 
+        computerChoice = "ROCK";
+        break;
+    case 2:
+        computerChoice = "PAPER";
+        break;
+    case 3:
+        computerChoice = "SCISSORS";
+        break;
 }
+console.log( randomNumber );
+console.log(computerChoice);
 //return the selected string
 return computerChoice;
 }
@@ -26,7 +32,6 @@ function playRound( playerSelection, computerSelection = computerPlay() ) {
     const tie = `${playerSelectionAllCaps} vs ${computerSelection}. It's a tie.`;
     /*compare possible player choices with each possible computer choice
     and return result of round*/
-
     //player chooses rock
     if( playerSelectionAllCaps === "ROCK" ) {
         if( computerSelection === "SCISSORS" ) {
