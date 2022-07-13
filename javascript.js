@@ -16,20 +16,17 @@ if( randomNumber === 1 ) {
 return computerChoice;
 }
 
-/* function to compare player choice and computer choice and output string which declares the winner. computerSelection passes computerPlay function*/
+/* function to compare player choice and computer choice and output winner. computerSelection passes computerPlay function*/
 function playRound( playerSelection, computerSelection = computerPlay() ) {
     //create variable to make user input case insensitive
     let playerSelectionAllCaps = playerSelection.toUpperCase()
     //create variables to store strings to reduce verbosity
-    const win = `${playerSelectionAllCaps} beats ${computerSelection}. You Win!`;
-    const lose = `${computerSelection} beats ${playerSelectionAllCaps}. You Lose...`;
+    const win = `${playerSelectionAllCaps} beats ${computerSelection}. You win!`;
+    const lose = `${computerSelection} beats ${playerSelectionAllCaps}. You lose...`;
     const tie = `${playerSelectionAllCaps} vs ${computerSelection}. It's a tie.`;
     /*compare possible player choices with each possible computer choice
     and return result of round*/
 
-    //TEST
-    console.log(playerSelectionAllCaps);
-    console.log(computerSelection);
     //player chooses rock
     if( playerSelectionAllCaps === "ROCK" ) {
         if( computerSelection === "SCISSORS" ) {
@@ -59,4 +56,50 @@ function playRound( playerSelection, computerSelection = computerPlay() ) {
         }
     }
 }
-console.log(playRound("scissors"));
+
+function game() {
+    //create int variable userScore to store user score
+    let userScore = 0;
+    //create int variable computerScore to store computer score
+    let computerScore = 0;
+    //create string variable playerSelection to store user input
+    let playerSelection;
+    //create string variable roundResult to store return from playRound
+    let roundResult;
+    //loop to play game 5 times
+    for( let i = 0; i < 5; i++ ) {
+        //prompt for user input and store in playerSelection
+        playerSelection = prompt( "Please enter rock, paper, or scissors: " );
+        //pass user input to playRound()
+        //store return in roundResult
+        roundResult = playRound( playerSelection );
+        //search roundResult for win lose tie
+        //if win add 1 to userScore
+        if ( roundResult.includes( "win" ) ) {
+            userScore += 1;
+        //if lose add 1 to computerScore
+        } else if( roundResult.includes( "lose" ) ) {
+            computerScore += 1;
+        }
+        //print playRound result
+        console.log( roundResult );
+    }//end loop
+    //create string finalScore so I dont have to type it twice
+    let finalScore = `The final score is: \n` +
+                     `You: ${userScore}\n` +
+                     `The Computer: ${computerScore}`;
+    //compare score
+    if( userScore > computerScore ) {
+    //if userScore win print score and win message
+        console.log(`${finalScore}\nYou Win!!!!`);
+    //if comptureScore win print score and lose message 
+    } else if( userScore < computerScore ) {
+        console.log(`${finalScore}\nYou Lose...`);
+    //if by some miracle its a tie
+    } else {
+        console.log(`${finalScore}\nHoly Cow! FIVE TIES IN A ROW!`);
+    }
+}
+
+//BEGIN THE GAME!!!!!!!
+game();
