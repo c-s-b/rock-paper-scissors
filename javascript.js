@@ -16,8 +16,6 @@ switch ( randomNumber ) {
         computerChoice = "SCISSORS";
         break;
 }
-console.log( randomNumber );
-console.log(computerChoice);
 //return the selected string
 return computerChoice;
 }
@@ -61,7 +59,7 @@ function playRound( playerSelection, computerSelection = computerPlay() ) {
         }
     }
 }
-
+/* function to loop request input from user and pass to playRound() 5x */
 function game() {
     //create int variable userScore to store user score
     let userScore = 0;
