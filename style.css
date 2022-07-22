@@ -1,0 +1,107 @@
+@font-face {
+    font-family: 'press_start_2pregular';
+    src: url('fonts/pressstart2p-regular-webfont.woff2') format('woff2'),
+         url('fonts/pressstart2p-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+html, body {
+    min-height: 100vh;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header {
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(192, 154, 209, 0.548);
+}
+
+.menu {
+    flex: 1 0 auto;
+}
+
+#page-title {
+    box-sizing: border-box;
+    font-family: 'press_start_2pregular', Courier;
+    font-style: italic;
+    color: rgba(24, 36, 63, 0.986);
+    font-size: 80px;
+    flex: 2 0 auto;
+    margin: 12px;
+    padding-left: 80px;
+}
+
+.links {
+    box-sizing: border-box;
+    display: flex;
+    list-style: none;
+    gap: 24px;
+    justify-content: space-around;
+    padding: 0;
+}
+
+li {
+    flex: none;
+    
+}
+
+a {
+    text-decoration: none;
+    color: rgba(24, 36, 63, 0.986);
+    font-size: 20px;
+    font-family: 'press_start_2pregular', Courier;
+}
+
+main {
+    background-color:rgba(24, 36, 63, 0.986);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ready {
+    font-size: 64px;
+    font-family: 'press_start_2pregular', Courier;
+    color: rgba(192, 154, 209, 0.548);
+}
+
+#start {
+    text-decoration: none;
+    color:rgba(24, 36, 63, 0.986);
+    border: solid rgba(192, 154, 209, 0.548);
+    background-color: rgba(192, 154, 209, 0.548);
+    font-size: 52px;
+    font-family: 'press_start_2pregular', Courier;
+    padding: 16px;
+}
+
+#start-continue:hover {
+    color: rgba(192, 154, 209, 0.548);
+    background-color:rgba(24, 36, 63, 0.986);
+    cursor: grab;
+}
+
+footer {
+    background-color: rgba(192, 154, 209, 0.548);
+    color:rgba(24, 36, 63, 0.986);
+    text-align: center;
+    padding: 12px;
+}
