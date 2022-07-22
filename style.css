@@ -93,7 +93,7 @@ main {
     padding: 16px;
 }
 
-#start-continue:hover {
+#start:hover {
     color: rgba(192, 154, 209, 0.548);
     background-color:rgba(24, 36, 63, 0.986);
     cursor: grab;
