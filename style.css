@@ -99,6 +99,8 @@ main {
     margin-left: 0;
     margin-right: 76px;
     margin-top: 64px;
+    font-size: 24px;
+    font-family: 'ibm_plex_monosemibold', Arial;
 }
 
 .ready {
