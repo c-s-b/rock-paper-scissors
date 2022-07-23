@@ -100,7 +100,25 @@ function computerPlay() {
         startButton.remove();
         gameScreen.appendChild(devil);
         gameScreen.appendChild(dialogue);
+        addButtons( 1 , gameScreen );
         
+    }
+
+    function addButtons ( gameProgress , gameScreen) {
+        let buttonContainer = document.createElement("div");
+        let continueButton = document.createElement("button")
+        let surrenderButton = document.createElement("button");
+        buttonContainer.className = "button-container";
+        continueButton.setAttribute("type" , "button" );
+        surrenderButton.setAttribute("type" , "button" );
+
+        if(gameProgress = 1) {
+            continueButton.textContent = "SOUNDS FUN"
+            surrenderButton.textContent = "NOT TODAY, SATAN"
+            gameScreen.appendChild(buttonContainer);
+            buttonContainer.appendChild(continueButton);
+            buttonContainer.appendChild(surrenderButton);
+        }
     }
     
     fullGame();

@@ -6,6 +6,14 @@
     font-style: normal;
 
 }
+@font-face {
+    font-family: 'ibm_plex_monosemibold';
+    src: url('fonts/dialogue-font/ibmplexmono-semibold-webfont.woff2') format('woff2'),
+         url('fonts/dialogue-font/ibmplexmono-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 html, body {
     min-height: 100vh;
@@ -113,4 +121,18 @@ footer {
     max-width: 200px;
     height: auto;
     margin-bottom: 48px;
+}
+
+#dialogue {
+    font-family: 'ibm_plex_monosemibold', Arial;
+    color: rgba(192, 154, 209, 0.548);
+    font-size: 24px;
+    padding: 24px;
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    
+    gap: 48px;
 }
