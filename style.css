@@ -83,6 +83,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 .ready {
@@ -120,7 +121,7 @@ footer {
 #devil {
     max-width: 200px;
     height: auto;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
 }
 
 #dialogue {
@@ -129,10 +130,31 @@ footer {
     font-size: 24px;
     padding: 24px;
     text-align: center;
+    margin: 0;
 }
 
 .button-container {
-    display: flex;
-    
+    display: flex; 
     gap: 48px;
 }
+
+.rpsContainer {
+    display: flex;
+    justify-content: center;
+    align-self: stretch;
+}
+
+#rock, #paper, #scissors {
+    max-width: 200px;
+    height: auto;
+    margin-left: 48px;
+    margin-right: 48px;
+    margin-bottom: 24px;
+}
+
+#rock:hover, #paper:hover, #scissors:hover {
+    cursor: pointer;
+}
+
+
+

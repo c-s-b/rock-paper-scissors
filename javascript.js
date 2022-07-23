@@ -78,7 +78,7 @@ function computerPlay() {
             console.log(`${finalScore}\nHoly Cow! A tie! What are the odds!!`);
         }
     }
-
+    //intitialize game
     function fullGame() {
        let gameScreen = document.querySelector(".game-screen");
         let startButton = document.querySelector("#start");
@@ -88,7 +88,7 @@ function computerPlay() {
             intro( gameScreen, startButton, dialogue)
         });
     }
-
+    //switch pages when user presses start
     function intro( gameScreen, startButton, dialogue) {
         let ready = document.querySelector(".ready");
         let devil = document.createElement("img");
@@ -103,15 +103,15 @@ function computerPlay() {
         addButtons( 1 , gameScreen, dialogue );
         
     }
-
-    function addButtons ( gameProgress , gameScreen, dialogue) {
+    //create buttons and surrender functionality
+    function addButtons (gameProgress , gameScreen, dialogue) {
         let buttonContainer = document.createElement("div");
         let continueButton = document.createElement("button")
         let surrenderButton = document.createElement("button");
         buttonContainer.className = "button-container";
         continueButton.setAttribute("type" , "button" );
         surrenderButton.setAttribute("type" , "button" );
-
+        
         if(gameProgress = 1) {
             continueButton.textContent = "SOUNDS FUN"
             surrenderButton.textContent = "NOT TODAY, SATAN"
@@ -119,13 +119,43 @@ function computerPlay() {
             buttonContainer.appendChild(continueButton);
             buttonContainer.appendChild(surrenderButton);
         }
-
+        //exit game early
         surrenderButton.addEventListener("click", () => {
-             if ( gameProgress < 3 ) {
+             if (gameProgress < 3) {
                  dialogue.textContent = "Coward. Begone with You!"
                  setTimeout(() => location.reload(), 1500);
              }
         })
+
+        continueButton.addEventListener("click" , () => {
+            if (gameProgress < 3) {
+            rps(gameScreen , continueButton, surrenderButton, buttonContainer);    
+           }
+        })
+    }
+    //display rock paper and scissors for player selection
+    function rps(gameScreen, continueButton, surrenderButton, buttonContainer) {
+        let rpsContainer = document.createElement("div");
+        let rock = document.createElement("img");
+        rock.setAttribute("id" , "rock");
+        rock.src = "./images/rock.png";
+        rock.alt = "rock";
+        let paper = document.createElement("img");
+        paper.setAttribute("id" , "paper");
+        paper.src = "./images/paper.png";
+        paper.alt = "paper";
+        let scissors = document.createElement("img");
+        scissors.setAttribute("id" , "scissors");
+        scissors.src = "./images/scissors.png";
+        scissors.alt = "scissors";
+
+        dialogue.textContent = "Choose Your Weapon";
+        continueButton.remove();
+        surrenderButton.textContent = "I SURRENDER";
+        rpsContainer.appendChild(rock);
+        rpsContainer.appendChild(paper);
+        rpsContainer.appendChild(scissors);
+        gameScreen.insertBefore(rpsContainer , buttonContainer);
     }
     
     fullGame();
