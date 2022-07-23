@@ -94,7 +94,7 @@ main {
 button {
     text-decoration: none;
     color:rgba(24, 36, 63, 0.986);
-    border: solid rgba(192, 154, 209, 0.548);
+   
     background-color: rgba(192, 154, 209, 0.548);
     font-family: 'press_start_2pregular', Courier;
     padding: 16px;
@@ -104,7 +104,7 @@ button {
     font-size: 52px;  
 }
 
-#start:hover {
+button:hover {
     color: rgba(192, 154, 209, 0.548);
     background-color:rgba(24, 36, 63, 0.986);
     cursor: grab;

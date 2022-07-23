@@ -100,11 +100,11 @@ function computerPlay() {
         startButton.remove();
         gameScreen.appendChild(devil);
         gameScreen.appendChild(dialogue);
-        addButtons( 1 , gameScreen );
+        addButtons( 1 , gameScreen, dialogue );
         
     }
 
-    function addButtons ( gameProgress , gameScreen) {
+    function addButtons ( gameProgress , gameScreen, dialogue) {
         let buttonContainer = document.createElement("div");
         let continueButton = document.createElement("button")
         let surrenderButton = document.createElement("button");
@@ -119,6 +119,13 @@ function computerPlay() {
             buttonContainer.appendChild(continueButton);
             buttonContainer.appendChild(surrenderButton);
         }
+
+        surrenderButton.addEventListener("click", () => {
+             if ( gameProgress < 3 ) {
+                 dialogue.textContent = "Coward. Begone with You!"
+                 setTimeout(() => location.reload(), 1500);
+             }
+        })
     }
     
     fullGame();
