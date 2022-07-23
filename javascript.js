@@ -1,3 +1,7 @@
+//initialize scores
+let computerScore = 0;
+let userScore = 0;
+
 /*The computer randomly chooses rock, paper or scissors*/
 function computerPlay() {
     let randomNumber = Math.floor( Math.random() * 3 ) + 1;
@@ -18,29 +22,23 @@ function computerPlay() {
     
     /*User needs to choose an option, which then needs to be compared to the computerPlay() result*/
     function playRound( playerSelection, computerSelection = computerPlay() ) {
-        let playerSelectionAllCaps = playerSelection.toUpperCase();
         //create variables to store strings to reduce verbosity
         let win = false;
         let lose = false;
-        let tie = false;
         
         //player chooses rock
-        if( playerSelectionAllCaps === "ROCK" ) {
+        if( playerSelection === "ROCK" ) {
             if( computerSelection === "SCISSORS" ) {
                 win = true;
             } else if( computerSelection === "PAPER" ) {
                 lose = true;
-            } else {
-                tie = true;
             }
         //player chooses scissors
-        } else if( playerSelectionAllCaps === "SCISSORS" ) {
+        } else if( playerSelection === "SCISSORS" ) {
             if( computerSelection === "PAPER" ) {
                 win = true;
             } else if( computerSelection === "ROCK" ) {
                 lose = true;
-            } else {
-                tie = true;
             }
         //player chooses paper
         } else {
@@ -48,36 +46,52 @@ function computerPlay() {
                 win = true;
             } else if( computerSelection === "SCISSORS" ) {
                 lose = true;
-            } else {
-                tie = true;
             }
         }
+        return gameResult(win , lose , playerSelection, computerSelection);
     }
     /* function to loop request input from user and pass to playRound() 5x */
-    function game() {
-        //create int variable userScore to store user score
-        let userScore = 0;
-        //create int variable computerScore to store computer score
-        let computerScore = 0;
-        //create string variable playerSelection to store user input
-        let playerSelection;
-        //create string variable roundResult to store return from playRound
-        let roundResult;
-       
-        //create string finalScore so I dont have to type it twice
-        let finalScore = `The final score is: \n` +
-                         `You: ${userScore}\n` +
-                         `The Computer: ${computerScore}`;
+    function gameResult(win, lose, playerSelection, computerSelection) {
         
-        //display winner
-        if( userScore > computerScore ) {
-            console.log(`${finalScore}\nYou Win!!!!`);
-        } else if( userScore < computerScore ) {
-            console.log(`${finalScore}\nYou Lose...`);
+        //pass result string to dialogue
+        let result = document.querySelector("#dialogue");
+        //scores
+        let userScoreDisplay = document.querySelector(".user-score");
+        let computerScoreDisplay = document.querySelector(".computer-score");
+        //allow quit
+        //evaluate result
+        if(win) {
+            result.textContent = `BLASTED! ${playerSelection} beats ${computerSelection}. You win...`;
+            userScore += 1;
+            displayScore(true);
+        } else if(lose) {
+            result.textContent = `HA! ${computerSelection} beats ${playerSelection}. You Lose!`;
+            computerScore += 1;
+            displayScore(true);
         } else {
-            console.log(`${finalScore}\nHoly Cow! A tie! What are the odds!!`);
+            result.textContent = `Hmmm... ${computerSelection} and ${playerSelection}. Draw. Try Again!`;
+        }        
+    } 
+    
+    function displayScore(isDisplayed) {
+        if(!isDisplayed) {  
+            const score = document.querySelector("#score-container");
+            let userScoreDisplay = document.createElement("p");
+            let computerScoreDisplay = document.createElement("p");
+            userScoreDisplay.className = "user-score";
+            computerScoreDisplay.className = "computer-score";
+            score.appendChild(userScoreDisplay);
+            score.appendChild(computerScoreDisplay);
+            userScoreDisplay.textContent = `User Score: ${userScore}`;
+            computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
+        } else {
+            let userScoreDisplay = document.querySelector(".user-score");
+            let computerScoreDisplay = document.querySelector(".computer-score");
+            userScoreDisplay.textContent = `User Score: ${userScore}`;
+            computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
+            }
         }
-    }
+
     //intitialize game
     function fullGame() {
        let gameScreen = document.querySelector(".game-screen");
@@ -100,41 +114,42 @@ function computerPlay() {
         startButton.remove();
         gameScreen.appendChild(devil);
         gameScreen.appendChild(dialogue);
-        addButtons( 1 , gameScreen, dialogue );
+        addButtons(gameScreen, dialogue );
         
     }
     //create buttons and surrender functionality
-    function addButtons (gameProgress , gameScreen, dialogue) {
+    function addButtons (gameScreen, dialogue) {
         let buttonContainer = document.createElement("div");
-        let continueButton = document.createElement("button")
+        let continueButton = document.createElement("button");
         let surrenderButton = document.createElement("button");
+        surrenderButton.className = "surrender";
         buttonContainer.className = "button-container";
         continueButton.setAttribute("type" , "button" );
         surrenderButton.setAttribute("type" , "button" );
-        
-        if(gameProgress = 1) {
-            continueButton.textContent = "SOUNDS FUN"
-            surrenderButton.textContent = "NOT TODAY, SATAN"
-            gameScreen.appendChild(buttonContainer);
-            buttonContainer.appendChild(continueButton);
-            buttonContainer.appendChild(surrenderButton);
-        }
+
+        continueButton.textContent = "SOUNDS FUN"
+        surrenderButton.textContent = "NOT TODAY, SATAN"
+        gameScreen.appendChild(buttonContainer);
+        buttonContainer.appendChild(continueButton);
+        buttonContainer.appendChild(surrenderButton);
+
         //exit game early
         surrenderButton.addEventListener("click", () => {
-             if (gameProgress < 3) {
                  dialogue.textContent = "Coward. Begone with You!"
                  setTimeout(() => location.reload(), 1500);
-             }
+                 continueButton.remove();
+                 surrenderButton.remove();
         })
 
         continueButton.addEventListener("click" , () => {
-            if (gameProgress < 3) {
-            rps(gameScreen , continueButton, surrenderButton, buttonContainer);    
-           }
+            rps(gameScreen , continueButton, surrenderButton, buttonContainer);
+            //display scores    
+            displayScore(false)
         })
     }
     //display rock paper and scissors for player selection
     function rps(gameScreen, continueButton, surrenderButton, buttonContainer) {
+        //display game ui
         let rpsContainer = document.createElement("div");
         let rock = document.createElement("img");
         rock.setAttribute("id" , "rock");
@@ -152,16 +167,24 @@ function computerPlay() {
         dialogue.textContent = "Choose Your Weapon";
         continueButton.remove();
         surrenderButton.textContent = "I SURRENDER";
+        surrenderButton.addEventListener("click" , () => {
+            rock.remove();
+            paper.remove();
+            scissors.remove();
+
+        })
+
         rpsContainer.appendChild(rock);
         rpsContainer.appendChild(paper);
         rpsContainer.appendChild(scissors);
         gameScreen.insertBefore(rpsContainer , buttonContainer);
 
+        //add game functionality until user surrenders
         rock.addEventListener("click" , () => {
             playRound("ROCK") } )
         paper.addEventListener("click" , () => {
             playRound("PAPER")} )
-        scissors.addEventListener("click" , () => {r
+        scissors.addEventListener("click" , () => {
             playRound("SCISSORS")} )
 
     }
