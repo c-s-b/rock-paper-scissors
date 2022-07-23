@@ -78,8 +78,32 @@ function computerPlay() {
             console.log(`${finalScore}\nHoly Cow! A tie! What are the odds!!`);
         }
     }
+
+    function fullGame() {
+       let gameScreen = document.querySelector(".game-screen");
+        let startButton = document.querySelector("#start");
+        let dialogue = document.createElement("p");
+        dialogue.setAttribute("id", "dialogue");
+        startButton.addEventListener("click", () => {
+            intro( gameScreen, startButton, dialogue)
+        });
+    }
+
+    function intro( gameScreen, startButton, dialogue) {
+        let ready = document.querySelector(".ready");
+        let devil = document.createElement("img");
+        devil.setAttribute("id","devil");
+        devil.src = "./images/devil.png";
+        devil.alt = "devil";
+        dialogue.textContent = "Would you like to play a game of Rock, Paper, Scissors? \n If you win, you'll get the Golden Fiddle!"
+        ready.remove();
+        startButton.remove();
+        gameScreen.appendChild(devil);
+        gameScreen.appendChild(dialogue);
+        
+    }
     
-    
+    fullGame();
     
     
     //BEGIN THE GAME!!!!!!!

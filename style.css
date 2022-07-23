@@ -83,14 +83,17 @@ main {
     color: rgba(192, 154, 209, 0.548);
 }
 
-#start {
+button {
     text-decoration: none;
     color:rgba(24, 36, 63, 0.986);
     border: solid rgba(192, 154, 209, 0.548);
     background-color: rgba(192, 154, 209, 0.548);
-    font-size: 52px;
     font-family: 'press_start_2pregular', Courier;
     padding: 16px;
+}
+
+#start {
+    font-size: 52px;  
 }
 
 #start:hover {
@@ -104,4 +107,10 @@ footer {
     color:rgba(24, 36, 63, 0.986);
     text-align: center;
     padding: 12px;
+}
+
+#devil {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 48px;
 }
