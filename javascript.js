@@ -18,38 +18,38 @@ function computerPlay() {
     
     /*User needs to choose an option, which then needs to be compared to the computerPlay() result*/
     function playRound( playerSelection, computerSelection = computerPlay() ) {
-        let playerSelectionAllCaps = playerSelection.toUpperCase()
+        let playerSelectionAllCaps = playerSelection.toUpperCase();
         //create variables to store strings to reduce verbosity
-        const win = `${playerSelectionAllCaps} beats ${computerSelection}. You win!`;
-        const lose = `${computerSelection} beats ${playerSelectionAllCaps}. You lose...`;
-        const tie = `${playerSelectionAllCaps} vs ${computerSelection}. It's a tie.`;
+        let win = false;
+        let lose = false;
+        let tie = false;
         
         //player chooses rock
         if( playerSelectionAllCaps === "ROCK" ) {
             if( computerSelection === "SCISSORS" ) {
-                return win;
+                win = true;
             } else if( computerSelection === "PAPER" ) {
-                return lose;
+                lose = true;
             } else {
-                return tie;
+                tie = true;
             }
         //player chooses scissors
         } else if( playerSelectionAllCaps === "SCISSORS" ) {
             if( computerSelection === "PAPER" ) {
-                return win;
+                win = true;
             } else if( computerSelection === "ROCK" ) {
-                return lose;
+                lose = true;
             } else {
-                return tie;
+                tie = true;
             }
         //player chooses paper
         } else {
             if( computerSelection === "ROCK" ) {
-                return win;
+                win = true;
             } else if( computerSelection === "SCISSORS" ) {
-                return lose;
+                lose = true;
             } else {
-                return tie;
+                tie = true;
             }
         }
     }
@@ -156,7 +156,17 @@ function computerPlay() {
         rpsContainer.appendChild(paper);
         rpsContainer.appendChild(scissors);
         gameScreen.insertBefore(rpsContainer , buttonContainer);
+
+        rock.addEventListener("click" , () => {
+            playRound("ROCK") } )
+        paper.addEventListener("click" , () => {
+            playRound("PAPER")} )
+        scissors.addEventListener("click" , () => {r
+            playRound("SCISSORS")} )
+
     }
+
+        
     
     fullGame();
     
