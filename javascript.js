@@ -89,8 +89,26 @@ function computerPlay() {
             let computerScoreDisplay = document.querySelector(".computer-score");
             userScoreDisplay.textContent = `User Score: ${userScore}`;
             computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
+            displayWinner(userScore, computerScore);
             }
         }
+
+    function displayWinner(userScore, computerScore) {
+        if(userScore < 5 && computerScore < 5 ) {
+            return;
+        } else {
+            let rpsContainer = document.querySelector(".rps-container");
+            let buttonContainer = document.querySelector(".button-container");
+            let dialogue = document.querySelector("#dialogue");
+            dialogue.textContent = (userScore > computerScore ?
+                "You have bested me, but the fiddle was a lie..." :
+                "YOU FOOL! Your soul is forfeit!");
+            dialogue.style.fontSize = "48px";
+            rpsContainer.remove();
+            buttonContainer.remove();
+            setTimeout(() => location.reload(), 3000);
+        }
+    }
 
     //intitialize game
     function fullGame() {
@@ -151,6 +169,7 @@ function computerPlay() {
     function rps(gameScreen, continueButton, surrenderButton, buttonContainer) {
         //display game ui
         let rpsContainer = document.createElement("div");
+        rpsContainer.className = "rps-container";
         let rock = document.createElement("img");
         rock.setAttribute("id" , "rock");
         rock.src = "./images/rock.png";

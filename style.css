@@ -155,11 +155,7 @@ footer {
     gap: 48px;
 }
 
-.rpsContainer {
-    display: flex;
-    justify-content: center;
-    align-self: stretch;
-}
+
 
 #rock, #paper, #scissors {
     max-width: 200px;
