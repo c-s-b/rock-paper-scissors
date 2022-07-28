@@ -98,14 +98,14 @@ function computerPlay() {
             return;
         } else {
             let rpsContainer = document.querySelector(".rps-container");
-            let buttonContainer = document.querySelector(".button-container");
+            let surrenderButton = document.querySelector(".surrender");
             let dialogue = document.querySelector("#dialogue");
             dialogue.textContent = (userScore > computerScore ?
                 "You have bested me, but the fiddle was a lie..." :
                 "YOU FOOL! Your soul is forfeit!");
             dialogue.style.fontSize = "48px";
             rpsContainer.remove();
-            buttonContainer.remove();
+            surrenderButton.remove();
             setTimeout(() => location.reload(), 3000);
         }
     }
@@ -163,6 +163,10 @@ function computerPlay() {
             rps(gameScreen , continueButton, surrenderButton, buttonContainer);
             //display scores    
             displayScore(false)
+            let scoreContainer = document.querySelector("#score-container");
+            surrenderButton.remove();
+            scoreContainer.appendChild(surrenderButton);
+            surrenderButton.style.marginLeft = "-200px";
         })
     }
     //display rock paper and scissors for player selection
@@ -182,9 +186,11 @@ function computerPlay() {
         scissors.setAttribute("id" , "scissors");
         scissors.src = "./images/scissors.png";
         scissors.alt = "scissors";
-
         dialogue.textContent = "Choose Your Weapon";
+        
         continueButton.remove();
+        
+        
         surrenderButton.textContent = "I SURRENDER";
         surrenderButton.addEventListener("click" , () => {
             rock.remove();
