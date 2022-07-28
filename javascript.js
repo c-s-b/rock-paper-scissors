@@ -154,6 +154,7 @@ function computerPlay() {
         //exit game early
         surrenderButton.addEventListener("click", () => {
                  dialogue.textContent = "Coward. Begone with You!"
+                 dialogue.style.fontSize = "48px";
                  setTimeout(() => location.reload(), 1500);
                  continueButton.remove();
                  surrenderButton.remove();
